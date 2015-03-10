@@ -19,6 +19,10 @@ class PaymentGatewayCustomer
     end
   end
 
+  def subscriptions
+    customer.subscriptions.data
+  end
+
   def update_card(card_token)
     customer.card = card_token
     customer.save
@@ -57,11 +61,35 @@ class PaymentGatewayCustomer
     def retrieve(*_args)
       nil
     end
+
+    def data
+      []
+    end
   end
 
   class BlankCard
     def last4
       ""
+    end
+  end
+
+  class NoDiscount
+    def coupon
+      NoCoupon.new
+    end
+  end
+
+  class NoCoupon
+    def amount_off
+      0
+    end
+
+    def percent_off
+      0
+    end
+
+    def valid
+      true
     end
   end
 end
