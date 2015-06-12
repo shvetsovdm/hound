@@ -73,18 +73,10 @@ describe StyleGuide::Scss do
         end
       end
 
-      context "when exclude is provided as string" do
-        it "does not error" do
-          pending
-
+      context "when exclude option is provided" do
+        it "does not find any errors" do
           content = ".a { margin: .5em; }\n"
-          config = {
-            "linters" => {
-              "LeadingZero" => {
-                "exclude" => "lib/**",
-              }
-            }
-          }
+          config = { "exclude" => "lib/**" }
 
           expect(violations_in(content, config)).to be_empty
         end
