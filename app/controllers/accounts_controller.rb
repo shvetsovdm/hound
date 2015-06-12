@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_filter :validate_billable_email, only: :update
+  before_action :validate_billable_email, only: :update
 
   def show
     @account_page = AccountPage.new(
